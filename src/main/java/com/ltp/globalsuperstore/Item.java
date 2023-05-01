@@ -1,12 +1,15 @@
 package com.ltp.globalsuperstore;
 import java.util.Date;
 import java.util.Objects;
+import java.text.SimpleDateFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 public class Item {
     
     private String category;
     private String name;
     private Double price;
     private Double discount;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
 
@@ -111,6 +114,11 @@ public class Item {
             ", discount='" + getDiscount() + "'" +
             ", date='" + getDate() + "'" +
             "}";
+    }
+
+    public String getFormatDate() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        return formatter.format(date);   
     }
 
 }

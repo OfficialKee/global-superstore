@@ -9,16 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 @Controller
 public class StoreController {
-   List<Item> items = new ArrayList<>();
+  private List<Item> items = new ArrayList<>();
 
     @GetMapping("/")
     public String getForm(Model model){
+        model.addAttribute("item", new Item());
         model.addAttribute("categories", Constants.CATEGORIES);
 
         return "form";
     }
     @GetMapping("/inventory")
     public String getInventory(Model model){
+        model.addAttribute("items", items);
 
         return "inventory";
     }
@@ -26,7 +28,7 @@ public class StoreController {
     @PostMapping("/submitItem")
     public String handleSubmit(Item item){
         items.add(item);
-        return "inventory";
+        return "redirect:/inventory";
 
     }
     
